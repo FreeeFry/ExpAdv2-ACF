@@ -16,38 +16,12 @@ local Component = EXPADV.AddComponent( "acf", true )
 Component.Author = "FreeFry"
 Component.Description = "Adds functions for controlling ACF sents."
 
-local function isEngine(ent)
-	if not validPhysics(ent) then return false end
-	if (ent:GetClass() == "acf_engine") then return true else return false end
-end
-
-local function isGearbox(ent)
-	if not validPhysics(ent) then return false end
-	if (ent:GetClass() == "acf_gearbox") then return true else return false end
-end
-
-local function isGun(ent)
-	if not validPhysics(ent) then return false end
-	if (ent:GetClass() == "acf_gun") then return true else return false end
-end
-
-local function isAmmo(ent)
-	if not validPhysics(ent) then return false end
-	if (ent:GetClass() == "acf_ammo") then return true else return false end
-end
-
-local function isFuel(ent)
-	if not validPhysics(ent) then return false end
-	if (ent:GetClass() == "acf_fueltank") then return true else return false end
-end
-
 Component.restrictInfo = function (ply, ent) -- Hack, this allows this function to be used from inline and prepared type functions.
 	if GetConVar("sbox_acf_e2restrictinfo"):GetInt() != 0 then
 		if isOwner(ply, ent) then return false else return true end
 	end
 	return false
 end
-
 
 Component.linkTables =
 { -- link resources within each ent type.  should point to an ent: true if adding link.Ent, false to add link itself
@@ -481,6 +455,7 @@ Component:AddInlineFunction( "acfPropDuctility", "e:", "n", "(@value 1:IsValid()
 Component:AddFunctionHelper( "acfPropDuctility", "e:", "Returns the ductility of an entity." )
 
 -- [ Fuel Functions ] --
+
 Component:AddInlineFunction( "acfIsFuel", "e:", "b", "(@value 1:IsValid() and @value 1:GetClass() == 'acf_fueltank' and !EXPADV.Components.acf.restrictInfo(Context.player, @value 1) or false)" )
 Component:AddFunctionHelper( "acfIsFuel", "e:", "Returns true if the entity is an ACF fuel tank." )
 
