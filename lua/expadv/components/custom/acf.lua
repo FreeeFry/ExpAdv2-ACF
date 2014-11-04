@@ -17,7 +17,7 @@ Component.Author = "FreeFry"
 Component.Description = "Adds functions for controlling ACF sents."
 
 Component.restrictInfo = function (ply, ent) -- Hack, this allows this function to be used from inline and prepared type functions.
-	if GetConVar("sbox_acf_e2restrictinfo"):GetInt() != 0 then
+	if GetConVar("sbox_acf_restrictinfo"):GetInt() != 0 then
 		if isOwner(ply, ent) then return false else return true end
 	end
 	return false
@@ -70,7 +70,7 @@ end
 
 EXPADV.ServerOperators()
 
-Component:AddInlineFunction( "acfInfoRestricted", "", "b" , "$GetConVar('sbox_acf_e2restrictinfo'):GetBool()" )
+Component:AddInlineFunction( "acfInfoRestricted", "", "b" , "$GetConVar('sbox_acf_restrictinfo'):GetBool() or true" )
 Component:AddFunctionHelper( "acfInfoRestricted", "", "Returns true if functions returning sensitive info are restricted to owned props." )
 
 Component:AddPreparedFunction( "acfNameShort", "e:", "s",
