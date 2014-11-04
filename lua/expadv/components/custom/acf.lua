@@ -70,7 +70,11 @@ end
 
 EXPADV.ServerOperators()
 
+<<<<<<< HEAD
 Component:AddInlineFunction( "acfInfoRestricted", "", "b" , "$GetConVar('sbox_acf_restrictinfo'):GetBool() or true" )
+=======
+Component:AddInlineFunction( "acfInfoRestricted", "", "b" , "$GetConVar('sbox_acf_e2restrictinfo'):GetBool() or true" )
+>>>>>>> origin/master
 Component:AddFunctionHelper( "acfInfoRestricted", "", "Returns true if functions returning sensitive info are restricted to owned props." )
 
 Component:AddPreparedFunction( "acfNameShort", "e:", "s",
