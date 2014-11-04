@@ -189,7 +189,7 @@ Component:AddInlineFunction( "acfPower", "e:", "n", "(@value 1:IsValid() and !EX
 Component:AddFunctionHelper( "acfPower", "e:", "Returns the current power (in kW) of an ACF engine." )
 
 Component:AddInlineFunction( "acfInPowerband", "e:", "b", "(@value 1:IsValid() and !EXPADV.Components.acf.restrictInfo(Context.player, @value 1) and @value 1:GetClass() == 'acf_engine' and (@value 1.FlyRPM > @value 1.PeakMinRPM and @value 1.FlyRPM < @value 1.PeakMaxRPM))" )
-Component:AddFunctionHelper( "acfInPowerband", "E:", "Returns true if the ACF engine RPM is inside the powerband." )
+Component:AddFunctionHelper( "acfInPowerband", "e:", "Returns true if the ACF engine RPM is inside the powerband." )
 
 Component:AddInlineFunction( "acfThrottle", "e:", "n", "(@value 1:IsValid() and !EXPADV.Components.acf.restrictInfo(Context.player, @value 1) and @value 1:GetClass() == 'acf_engine' and (@value 1.Throttle or 0) * 100)" )
 Component:AddFunctionHelper( "acfThrottle", "e:", "Returns the current throttle of an ACF engine." )
@@ -224,7 +224,7 @@ Component:AddInlineFunction( "acfIsDual", "e:", "b", "(@value 1:IsValid() and !E
 Component:AddFunctionHelper( "acfIsDual", "e:", "Returns true if an ACF gearbox is dual clutch." )
 
 Component:AddInlineFunction( "acfShiftTime", "e:", "n", "(@value 1:IsValid() and @value 1:GetClass() == 'acf_gearbox' and (@value 1.SwitchTime or 0) * 1000 or 0)" )
-Component:AddFunctionHelper( "acfShiftTime", "e;", "Returns the time in ms an ACF gearbox takes to chance gears." )
+Component:AddFunctionHelper( "acfShiftTime", "e:", "Returns the time in ms an ACF gearbox takes to chance gears." )
 
 Component:AddInlineFunction( "acfInGear", "e:", "b", "(@value 1:IsValid() and !EXPADV.Components.acf.restrictInfo(Context.player, @value 1) and @value 1:GetClass() == 'acf_gearbox' and @value 1.InGear or false)" )
 Component:AddFunctionHelper( "acfInGear", "e:", "Returns true if an ACF gearbox is in gear." )
@@ -406,7 +406,7 @@ Component:AddInlineFunction( "acfFLSpikes", "e:", "n", "(@value 1:IsValid() and 
 Component:AddFunctionHelper( "acfFLSpikes", "e:", "Returns the number of projectiles in a flechette round in an ACF ammo crate or weapon." )
 
 Component:AddInlineFunction( "acfFLSpikeMass", "e:", "n", "(@value 1:IsValid() and (@value 1:GetClass() == 'acf_ammo' or @value 1:GetClass() == 'acf_gun') and !EXPADV.Components.acf.restrictInfo(Context.player, @value 1) and @value 1.BulletData['Type'] == 'FL' and $math.Round(@value 1.BulletData['FlechetteMass'] or 0, 3) or 0)" )
-Component:AddFunctionHelper( "AcfFLSpikeMass", "e:", "Returns the mass of a single spike in a flechette round in an ACF ammo crate or weapon. " )
+Component:AddFunctionHelper( "acfFLSpikeMass", "e:", "Returns the mass of a single spike in a flechette round in an ACF ammo crate or weapon. " )
 
 Component:AddInlineFunction( "acfFLSpikeRadius", "e:", "n", "(@value 1:IsValid() and (@value 1:GetClass() == 'acf_ammo' or @value 1:GetClass() == 'acf_gun') and !EXPADV.Components.acf.restrictInfo(Context.player, @value 1) and @value 1.BulletData['Type'] == 'FL' and $math.Round((@value 1.BulletData['FlechetteRadius'] or 0), 3) * 10 or 0)" )
 Component:AddFunctionHelper( "acfFLSpikeRadius", "e:", "Returns the radius (in mm) of the spikes in a flechette round in an ACF ammo crate or weapon." )
@@ -466,7 +466,7 @@ Component:AddPreparedFunction( "acfRefuelDuty", "e:b", "",
 [[if @value 1:IsValid() and @value 1:GetClass() == "acf_fueltank" and EXPADV.IsOwner(@value 1, Context.player) then
 	@value 1:TriggerInput( "Refuel Duty", @value 2 and 1 or 0)
 end]] )
-Component:AddFunctionHelper( "acfRefuelDuty", "e:n", "Sets an ACF fuel tank on refuel duty, causing it to supply other fuel tanks with fuel." )
+Component:AddFunctionHelper( "acfRefuelDuty", "e:b", "Sets an ACF fuel tank on refuel duty, causing it to supply other fuel tanks with fuel." )
 
 Component:AddInlineFunction( "acfRefuelDuty", "e:", "b", "(@value 1:IsValid() and @value 1:GetClass() == 'acf_fueltank' and !EXPADV.Components.acf.restrictInfo(Context.player, @value 1) and @value 1.SupplyFuel or false)" )
 Component:AddFunctionHelper( "acfRefuelDuty", "e:", "Returns true if an ACF fueltank is set on refuel duty." )
